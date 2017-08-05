@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body ng-app="myApp">
+    <ul>
+        <li><a href="#/itcast">itcast</a></li>
+        <li><a href="#/tx">腾讯</a></li>
+        <li><a href="#/ali">阿里</a></li>
+        <li><a href="#/baidu">百度</a></li>
+    </ul>
+    <p ng-view></p>
+    <script src="./libs/angular.js"></script>
+    <script src="./libs/angular-route.js"></script>
+    <script>
+        var myApp = angular.module('myApp',['ngRoute']);
+        myApp.config(['$routeProvider',function($routeProvider){
+            $routeProvider
+                        .when('/baidu',{
+                            template:'欢迎来到{{place}}',
+                            controller:'baiduController'
+                        })
+                        .when('/ali',{
+                            template:'欢迎来到{{place}}',
+                            controller:'aliController'
+                        })
+                        .when('/tx',{
+                            template:'欢迎来到{{place}}',
+                            controller:'txController'
+                        })
+                        .when('/itcast',{
+                            template:'欢迎来到{{place}}',
+                            controller:'itcastController'
+                        })
+                        .when('/daye',{
+                            template:'我是王大爷,你要去哪儿?'
+                        })
+                        .otherwise({
+                            redirectTo:'/daye'
+                        })
+        }]);
+        myApp.controller('baiduController',function($scope){
+            $scope.place = '百度'
+        });
+        myApp.controller('aliController',function($scope){
+            $scope.place = '阿里'
+        });
+        myApp.controller('txController',function($scope){
+            $scope.place = '腾讯'
+        });
+        myApp.controller('itcastController',function($scope){
+            $scope.place = '传智播客'
+        });
+    </script>
+</body>
+</html>
